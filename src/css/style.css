@@ -49,7 +49,7 @@
   --zebra-stripe-bg: #101214;
 }
 
-[data-theme="light"] {
+[data-theme='light'] {
   --body-bg: #ffffff;
   --blue: #1d9bf0;
   --button-bg: #8e44ad;
@@ -165,7 +165,8 @@ img {
   user-select: none;
 }
 
-input, textarea {
+input,
+textarea {
   font-family: Lato, sans-serif;
 }
 
@@ -371,7 +372,7 @@ textarea.new-msg {
 }
 
 .positive {
-    color: var(--green);
+  color: var(--green);
 }
 
 a.logo {
@@ -410,7 +411,7 @@ a.logo img:not(:last-child) {
 }
 
 .nav-plus-bg {
- fill: var(--button-bg);
+  fill: var(--button-bg);
 }
 
 .nav .identicon img {
@@ -847,10 +848,10 @@ header.footer .header-content {
 
 /* twitter-style line that connects reply to the replied post */
 .msg-identicon .line {
-    width: 2px;
-    background-color: var(--connecting-line-color);
-    margin: 4px 18px;
-    height: 100%;
+  width: 2px;
+  background-color: var(--connecting-line-color);
+  margin: 4px 18px;
+  height: 100%;
 }
 
 .msg-main {
@@ -869,11 +870,11 @@ header.footer .header-content {
 }
 
 .padding0 {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .flex1 {
-    flex: 1;
+  flex: 1;
 }
 
 .quote .msg-content {
@@ -894,13 +895,12 @@ header.footer .header-content {
 
 .msg > div.msg-content > div.msg-sender,
 .msg > div.msg-content > div.text,
-.msg > div.msg-content > div.below-text
-{
-    margin-left: 1em;
+.msg > div.msg-content > div.below-text {
+  margin-left: 1em;
 }
 
-
-.reply .msg-content, .quote .msg-content {
+.reply .msg-content,
+.quote .msg-content {
   box-shadow: none;
 }
 
@@ -1256,7 +1256,7 @@ a.msg {
 }
 
 .badge.second {
-  color: #F9A825;
+  color: #f9a825;
 }
 
 .badge.first {
@@ -1431,7 +1431,6 @@ a.msgSenderName:hover .user-name {
   padding: 0;
 }
 
-
 #chat-view #message-list {
   max-width: 100%;
   width: max(80%, 800px);
@@ -1568,7 +1567,8 @@ a.msgSenderName:hover .user-name {
   color: var(--text-time);
 }
 
-.msg.quote .below-text, .msg.standalone .below-text {
+.msg.quote .below-text,
+.msg.standalone .below-text {
   margin-bottom: 12px;
 }
 
@@ -1621,9 +1621,9 @@ a.msgSenderName:hover .user-name {
   transition: color 0.2s;
 }
 
-.msg .like-btn.liked, .msg .like-btn:hover {
+.msg .like-btn.liked,
+.msg .like-btn:hover {
   color: var(--red);
-
 }
 
 .msg .zap-btn:hover {
@@ -1634,7 +1634,8 @@ a.msgSenderName:hover .user-name {
   color: var(--blue);
 }
 
-.msg .boost-btn.boosted, .msg .boost-btn:hover {
+.msg .boost-btn.boosted,
+.msg .boost-btn:hover {
   color: var(--green);
 }
 
@@ -2144,7 +2145,7 @@ form.public button[type='submit'] {
   margin-right: 5px;
   border-radius: 5px;
   background-color: var(--button-bg);
-  color: #FFF;;
+  color: #fff;
 }
 
 form.public button[type='submit'] span {
@@ -2558,22 +2559,22 @@ input[type='text'] {
     padding: 10px 15px;
   }
 
-  div:not([class*="msg-content"]) > form.public {
+  div:not([class*='msg-content']) > form.public {
     width: 94%;
   }
 
-  div:not([class*="msg-content"]) > form.public button[type='submit'] {
+  div:not([class*='msg-content']) > form.public button[type='submit'] {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  div:not([class*="msg-content"]) > form.public button[type='submit'] span {
+  div:not([class*='msg-content']) > form.public button[type='submit'] span {
     display: inline;
   }
 
-  div:not([class*="msg-content"]) > form.public button[type='submit'] svg {
+  div:not([class*='msg-content']) > form.public button[type='submit'] svg {
     display: none;
   }
   /* form.public div {
@@ -2629,13 +2630,17 @@ input[type='text'] {
 
   .public-messages-view .msg:first-of-type .msg-content,
   .public-messages-view .msg:last-of-type .msg-content,
-  .public-messages-view .msg:only-of-type .msg-content{
-      border-radius: 0;
+  .public-messages-view .msg:only-of-type .msg-content {
+    border-radius: 0;
   }
 
   .public-messages-view .msg .msg .msg-content {
     border-radius: 8px;
   }
+}
+
+.nip69valid {
+  color: #8e44ad;
 }
 
 @media (min-width: 626px) {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Helpers from '../Helpers';
 import Nostr from '../Nostr';
-
+import Icons from '../Icons';
 import Badge from './Badge';
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
   placeholder?: string;
   hideBadge?: boolean;
   userNameOnly?: boolean;
+  nip69valid?: boolean;
 };
 
 const Name = (props: Props) => {
@@ -66,7 +67,19 @@ const Name = (props: Props) => {
         {displayName || name || props.placeholder}
       </span>
       {props.hideBadge ? '' : <Badge pub={props.pub} />}
-      {showUserName ? <small className="user-name mar-left5">@{name}</small> : ''}
+      {showUserName ? (
+        <>
+          {props.nip69valid ? (
+            <small className="user-name mar-left5 nip69valid">
+              @{name} <span className="tooltip">{Icons.purplePill}</span>
+            </small>
+          ) : (
+            <small className="user-name mar-left5">@{name}</small>
+          )}
+        </>
+      ) : (
+        ''
+      )}
     </>
   );
 };

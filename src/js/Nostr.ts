@@ -17,6 +17,8 @@ import { sha256 } from '@noble/hashes/sha256';
 import localForage from 'localforage';
 import { route } from 'preact-router';
 
+import Helpers from './Helpers';
+
 import SortedLimitedEventSet from './SortedLimitedEventSet';
 
 const startTime = Date.now() / 1000;
@@ -1544,7 +1546,13 @@ const Nostr = {
     this.likesByUser.has(address) && callback();
     this.subscribe([{ kinds: [7, 5], authors: [address] }], callback);
   },
-  getProfile(address, cb?: (profile: any, address: string) => void, verifyNip05 = false) {
+  getProfile(
+    address,
+    cb?: (profile: any, address: string) => void,
+    verifyNip05 = false,
+    verifyNip69 = false,
+  ) {
+    console.log(`getProfile(address: , verifyNip05: ${verifyNip05}, verifyNip69: ${verifyNip69})`);
     this.knownUsers.add(address);
     const callback = () => {
       cb?.(this.profiles.get(address), address);
@@ -1557,6 +1565,14 @@ const Nostr = {
         this.verifyNip05Address(profile.nip05, address).then((isValid) => {
           console.log('NIP05 address is valid?', isValid, profile.nip05, address);
           profile.nip05valid = isValid;
+          this.profiles.set(address, profile);
+          callback();
+        });
+      }
+      if (verifyNip69 && profile.name && !profile.nip69valid) {
+        this.verifyNostrName(profile.name, address).then((isValid) => {
+          console.log('NIP69 name is valid?', isValid, profile.name, address);
+          profile.nip69valid = isValid;
           this.profiles.set(address, profile);
           callback();
         });
@@ -1600,6 +1616,17 @@ const Nostr = {
     }
   },
 
+  async verifyNostrName(name: string, pubkey: string): Promise<boolean> {
+    console.log(`verifyNostrName: ${name}`);
+    try {
+      const namePubKey = await this.getPubKeyByNostrName(name);
+      return namePubKey === pubkey;
+    } catch (error) {
+      // gives lots of cors errors:
+      // console.error(error);
+      return false;
+    }
+  },
   async getPubKeyByNip05Address(address: string): Promise<string | null> {
     try {
       const [localPart, domain] = address.split('@');
@@ -1608,6 +1635,23 @@ const Nostr = {
       const json = await response.json();
       const names = json.names;
       return names[localPart] || null;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
+
+  async getPubKeyByNostrName(name: string): Promise<string | null> {
+    try {
+      // TODO this should be configurable to the user's own node
+      const nameNodeUrl = 'https://nostrnames.org/api/names/';
+      const url = `${nameNodeUrl}${name.toLowerCase()}`;
+      console.log(`getPubKeyByNostrName: using name node url: ${nameNodeUrl}`);
+      const response = await fetch(url);
+      const json = await response.json();
+      const zonefile = json.zonefile;
+      const pubkey = Helpers.parseZonefileForNostrPubKey(zonefile);
+      return pubkey;
     } catch (error) {
       console.error(error);
       return null;

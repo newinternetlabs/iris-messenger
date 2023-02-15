@@ -152,7 +152,7 @@ class Profile extends View {
           <div class="profile-header-stuff">
             <div style="display:flex; flex-direction:row;">
               <h3 style="flex: 1" class="profile-name">
-                <${Name} pub=${this.state.hexPub} />
+                <${Name} pub=${this.state.hexPub} nip69valid=${this.state.nip69valid} />
               </h3>
               <div class="profile-actions">
                 <${Dropdown}>
@@ -190,6 +190,7 @@ class Profile extends View {
                             pub=${this.state.hexPub}
                             userNameOnly=${true}
                             hideBadge=${true}
+                            nip69valid=${this.state.nip69valid}
                           />
                         <//>
                       `
@@ -444,7 +445,6 @@ class Profile extends View {
         } catch (e) {
           console.log('Invalid banner URL', profile.banner);
         }
-
         // profile may contain arbitrary fields, so be careful
         this.setState({
           name: profile.name,
@@ -452,11 +452,13 @@ class Profile extends View {
           about: Helpers.highlightText(profile.about),
           picture: profile.picture,
           nip05: profile.nip05valid && profile.nip05,
+          nip69valid: profile.nip69valid,
           lightning,
           website: website,
           banner,
         });
       },
+      true,
       true,
     );
   }

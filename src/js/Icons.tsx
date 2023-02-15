@@ -457,6 +457,24 @@ export default {
       </g>
     </svg>
   ),
+  purplePill: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon icon-tabler icon-tabler-pill"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="#8e44ad"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7" fill="#8e44ad" />
+      <path d="M8.5 8.5l7 7" stroke="#ffffff" />
+    </svg>
+  ),
   QRcode: (
     <svg
       fill="currentColor"
