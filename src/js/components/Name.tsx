@@ -37,16 +37,23 @@ const Name = (props: Props) => {
   const [name, setName] = useState(initialName);
   const [displayName, setDisplayName] = useState(initialDisplayName);
   const [isNameGenerated, setIsNameGenerated] = useState(isGenerated);
+  const [isNip69Valid, setIsNip69Valid] = useState(props.nip69valid ? props.nip69valid : false);
   useEffect(() => {
     if (nostrAddr) {
       // TODO unsub
-      Nostr.getProfile(nostrAddr, (profile) => {
-        if (profile) {
-          setName(profile.name?.trim().slice(0, 100) || '');
-          setDisplayName(profile.display_name?.trim().slice(0, 100) || '');
-          setIsNameGenerated(profile.name || profile.display_name ? false : true);
-        }
-      });
+      Nostr.getProfile(
+        nostrAddr,
+        (profile) => {
+          if (profile) {
+            setName(profile.name?.trim().slice(0, 100) || '');
+            setDisplayName(profile.display_name?.trim().slice(0, 100) || '');
+            setIsNameGenerated(profile.name || profile.display_name ? false : true);
+            setIsNip69Valid(profile.nip69valid);
+          }
+        },
+        false,
+        true,
+      );
     }
   }, [props.pub]);
 
@@ -69,7 +76,7 @@ const Name = (props: Props) => {
       {props.hideBadge ? '' : <Badge pub={props.pub} />}
       {showUserName ? (
         <>
-          {props.nip69valid ? (
+          {isNip69Valid ? (
             <small className="user-name mar-left5 nip69valid">
               @{name} <span className="tooltip">{Icons.purplePill}</span>
             </small>
