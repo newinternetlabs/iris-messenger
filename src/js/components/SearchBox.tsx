@@ -163,6 +163,15 @@ class SearchBox extends Component<Props, State> {
     }
 
     if (this.props.onSelect) {
+      if (query.match(Helpers.nostrNameRegex)) {
+        Nostr.getPubKeyByNostrName(query).then((pubKey) => {
+          // if query hasn't changed since we started the request
+          if (query === String(this.props.query || $(this.base).find('input').first().val())) {
+            this.props.onSelect({ key: pubKey });
+          }
+        });
+      }
+
       // if matches email regex
       if (query.match(/.+@.+\..+/)) {
         Nostr.getPubKeyByNip05Address(query).then((pubKey) => {
