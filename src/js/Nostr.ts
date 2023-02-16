@@ -732,14 +732,14 @@ const Nostr = {
     return count;
   },
   SUGGESTED_FOLLOWS: [
-    'npub1sn0wdenkukak0d9dfczzeacvhkrgz92ak56egt7vdgzn8pv2wfqqhrjdv9', // snowden
-    'npub1sg6plzptd64u62a878hep2kev88swjh3tw00gjsfl8f237lmu63q0uf63m', // jack
+    'npub1ds3hmzemzgp9rsuvyvxqdk0y3uxnq9m903dktjxrvyfwk9w99t4sc2hzcn', // miles
     'npub1g53mukxnjkcmr94fhryzkqutdz2ukq4ks0gvy5af25rgmwsl4ngq43drvk', // sirius
-    'npub15dqlghlewk84wz3pkqqvzl2w2w36f97g89ljds8x6c094nlu02vqjllm5m', // saylor
-    'npub1z4m7gkva6yxgvdyclc7zp0vz4ta0s2d9jh8g83w03tp5vdf3kzdsxana6p', // yegorpetrov
-    'npub1az9xj85cmxv8e9j9y80lvqp97crsqdu2fpu3srwthd99qfu9qsgstam8y8', // nvk
+    'npub132w0sg64x08h2klxvytsamgcu63qqmk8d2yv8ltay8nvzwahk6wsyg2j8n', // larry
+    'npub17u5dneh8qjp43ecfxr6u5e9sjamsmxyuekrg2nlxrrk6nj9rsyrqywt4tp', // lopp
+    'npub1clwvhf87gsn20v02ywd9vda6gratnp3v3jrtxvc0ue0f7en5xhmq3xxhme', // willy
     'npub180cvv07tjdrrgpa0j7j7tmnyl2yr6yr7l8j4s3evf6u64th6gkwsyjh6w6', // fiatjaf
-    'npub1xtscya34g58tk0z605fvr788k263gsu6cy9x0mhnm87echrgufzsevkk5s', // jb55
+    'npub1mygerccwqpzyh9pvp6pv44rskv40zutkfs38t0hqhkvnwlhagp6s3psn5p', // gsovereignty
+    'npub18pudjhdhhp2v8gxnkttt00um729nv93tuepjda2jrwn3eua5tf5s80a699', // bitkarrot
   ],
   connectRelay: function (relay: Relay) {
     try {
